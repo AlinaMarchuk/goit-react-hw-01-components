@@ -1,0 +1,19 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 10px;
+  margin-bottom: 10px;
+  background-color: rgb(228, 193, 193);
+  border: 1px solid rgb(103, 99, 99);
+}
+
+.name {
+  margin: 0;
+}
+
+.status {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
