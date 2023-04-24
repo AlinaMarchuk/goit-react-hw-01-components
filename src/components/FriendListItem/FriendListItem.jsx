@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './friend-list-item.module.css';
+import styles from './FriendListItem.module.css';
 
 function FriendListItem(props) {
   const { avatar, name, isOnline } = props;
@@ -20,21 +20,21 @@ function FriendListItem(props) {
   );
 }
 
-function getBgColor(variant) {
-  switch (variant) {
+function getBgColor(status) {
+  switch (status) {
     case true:
       return 'green';
     case false:
       return 'red';
     default:
-      throw new Error(`Unsupported variant prop value - ${variant}`);
+      throw new Error(`Unsupported variant prop value - ${status}`);
   }
 }
 
 FriendListItem.propTypes = {
-  avatar: PropTypes.string,
-  name: PropTypes.string,
-  isOnline: PropTypes.bool,
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  isOnline: PropTypes.bool.isRequired,
 };
 
 export default FriendListItem;

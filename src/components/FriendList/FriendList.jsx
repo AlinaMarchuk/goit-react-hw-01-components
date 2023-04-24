@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import FriendListItem from 'components/FriendListItem/FriendListItem';
-import { Fragment } from 'react';
-import styles from './friend-list.module.css';
+import styles from './FriendList.module.css';
 
 function FriendList({ friends }) {
   return (
@@ -9,14 +8,12 @@ function FriendList({ friends }) {
       {friends.map(friend => {
         const { avatar, name, isOnline, id } = friend;
         return (
-          <Fragment key={id}>
-            <FriendListItem
-              avatar={avatar}
-              name={name}
-              isOnline={isOnline}
-              id={id}
-            />
-          </Fragment>
+          <FriendListItem
+            key={id}
+            avatar={avatar}
+            name={name}
+            isOnline={isOnline}
+          />
         );
       })}
     </ul>
@@ -24,7 +21,9 @@ function FriendList({ friends }) {
 }
 
 FriendList.propTypes = {
-  friends: PropTypes.array,
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.number.isRequired })
+  ),
 };
 
 export default FriendList;

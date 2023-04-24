@@ -1,43 +1,26 @@
 import PropTypes from 'prop-types';
-import styles from '../Statistics/statistics.module.css';
+import styles from './Statistics.module.css';
 
 function Statistics(props) {
   const { title, stats } = props;
-  const markup = stats.map(el => {
-    const { id, label, percentage } = el;
-    return (
-      <li
-        key={id}
-        className={styles.item}
-        style={{ backgroundColor: getRandomHexColor() }}
-      >
-        <span className={styles.label}>{label}</span>
-        <span className={styles.percentage}>{percentage}%</span>
-      </li>
-    );
-  });
-  //   title ? (
-  //     <section className={styles.statistics}>
-  //       <h2 className={styles.title}>{title}</h2>
-  //       <ul className={styles.statList}>{markup}</ul>
-  //     </section>
-  //   ) : (
-  //     <section className={styles.statistics}>
-  //       <ul className={styles.statList}>{markup}</ul>
-  //     </section>
-  //   );
-
-  if (title) {
-    return (
-      <section className={styles.statistics}>
-        <h2 className={styles.title}>{title}</h2>
-        <ul className={styles.statList}>{markup}</ul>
-      </section>
-    );
-  }
   return (
     <section className={styles.statistics}>
-      <ul className={styles.statList}>{markup}</ul>
+      {title && <h2 className={styles.title}>{title}</h2>}
+      <ul className={styles.statList}>
+        {stats.map(el => {
+          const { id, label, percentage } = el;
+          return (
+            <li
+              key={id}
+              className={styles.item}
+              style={{ backgroundColor: getRandomHexColor() }}
+            >
+              <span className={styles.label}>{label}</span>
+              <span className={styles.percentage}>{percentage}%</span>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
@@ -50,7 +33,13 @@ function getRandomHexColor() {
 
 Statistics.propTypes = {
   title: PropTypes.string,
-  stats: PropTypes.array,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ),
 };
 
 export default Statistics;
