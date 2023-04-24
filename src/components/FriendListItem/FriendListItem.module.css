@@ -17,3 +17,11 @@
   height: 20px;
   border-radius: 50%;
 }
+
+.online {
+  background-color: green;
+}
+
+.offline {
+  background-color: red;
+}

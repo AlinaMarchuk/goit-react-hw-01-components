@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import styles from './FriendListItem.module.css';
 
 function FriendListItem(props) {
@@ -6,8 +7,10 @@ function FriendListItem(props) {
   return (
     <li className={styles.item}>
       <span
-        className={styles.status}
-        style={{ backgroundColor: getBgColor(isOnline) }}
+        className={clsx(
+          styles.status,
+          isOnline ? styles.online : styles.offline
+        )}
       ></span>
       <img
         className={styles.avatar}
@@ -18,17 +21,6 @@ function FriendListItem(props) {
       <p className={styles.name}>{name}</p>
     </li>
   );
-}
-
-function getBgColor(status) {
-  switch (status) {
-    case true:
-      return 'green';
-    case false:
-      return 'red';
-    default:
-      throw new Error(`Unsupported variant prop value - ${status}`);
-  }
 }
 
 FriendListItem.propTypes = {
